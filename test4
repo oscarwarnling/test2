@@ -41,9 +41,11 @@ var DinnerModel = function() {
 	this.getAllIngredients = function() {
 		//TODO Lab 1
     var fullIngredients=[];
-    for (i in menu) {
-      fullIngredients.push(menu[i].ingredients);
-     
+    for (dish of menu) {
+      //fullIngredients.push(menu[i].ingredients);
+      for (ingredient of dish.ingredients){
+        fullIngredients.push(ingredient)
+      }
     }
     return fullIngredients;
 	}
@@ -52,13 +54,16 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function () {
         var priceMenu = 0;
         var ingredients = this.getAllIngredients();
-        for (key in ingredients) {
-          //return ingredients[key].price;
-          priceMenu += ingredients[key].price;
+        for (var i =0; i<ingredients.length; i++) {
+          
+          
+          
+            priceMenu += ingredients[i].price;
+          
         }
         return priceMenu;
     }
-
+  
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
@@ -131,9 +136,9 @@ var DinnerModel = function() {
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-	  for(key in menu){
-			if(menu[key].id == id) {
-				return menu[key];
+	  for(key in dishes){
+			if(dishes[key].id == id) {
+				return dishes[key];
 			}
 		}
 	}
